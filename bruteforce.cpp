@@ -1,17 +1,16 @@
 #include "./lib/qizingxy.h"
 
-#include <iostream>
 #include <complex>
+#include <iostream>
 
 #include <xtensor-blas/xlinalg.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 using namespace std::literals::complex_literals;
 
-
 int main() {
-  Hamilitonian H(2, 1.0, 2.0, 0.5, 2, 3); 
-  // H.print();
+  Hamilitonian H(2, 1.0, 2.0, 0.5, 2, 3);
+  H.print();
   return 0;
 }
 

@@ -24,12 +24,12 @@ test:
 	@echo -e "\n"
 	@./test
 
-# debug:
-# 	$(CXX) $(CXXFLAGS) -g main.cpp ./lib/*.cpp \
-# 		$(LDFLAGS) $(LDLIBS) \
-# 		-o main
-# 	@echo -e "\n"
-# 	@gdb ./main
+debug:
+	$(CXX) $(CXXFLAGS) -g bruteforce.cpp ./lib/*.cpp \
+		$(LDFLAGS) $(LDLIBS) \
+		-o deb
+	@echo -e "\n"
+	@gdb ./deb
 
 clean:
-	rm -f main test
+	rm -f main test deb
