@@ -9,14 +9,8 @@
 #include <xtensor/io/xio.hpp>
 
 typedef xt::xarray<std::complex<double>> arcomp;
-
-
-enum class Axis{
-  X,
-  Y, 
-  Z
-};
-
+typedef xt::xarray<double> ardouble;
+enum class Axis { X, Y, Z };
 
 using namespace std::literals::complex_literals;
 
@@ -43,13 +37,16 @@ private:
   double J;
   double gamma; // -1 <= gamma <= 1
   arcomp ham;
+  ardouble evectors;
+  ardouble energy_spectr;
 
 public:
   Hamilitonian(int NN, double hh, double JJ, double ggama, int hheight,
                int llength);
   void change_grid(int new_length, int new_height);
   void change_amount(int newN);
-  void print();
-  void set(arcomp arg);
-  xt::xarray<double> eigenvalues();
+
+  void print() const;
+  ardouble espectra() const;
+  ardouble eigenvectors() const;
 };

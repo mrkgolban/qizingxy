@@ -9,7 +9,6 @@ Hamilitonian::Hamilitonian(int NN, double hh, double JJ, double ggamma,
 
   ham = xt::zeros<std::complex<double>>({static_cast<std::size_t>(pow(2, N)),
                                          static_cast<std::size_t>(pow(2, N))});
-  ham.fill(0);
   // change_grid(length, height);
 
   int i_max = N / length;
@@ -30,26 +29,19 @@ Hamilitonian::Hamilitonian(int NN, double hh, double JJ, double ggamma,
         ham -= Jx * xt::linalg::dot(Sigma(N - index - 1, N, Axis::X).get_mat(),
                                     Sigma(index, N, Axis::X).get_mat());
       }
-      std::cout << index << " Z" << std::endl;
-      std::cout << Sigma(index, N, Axis::Z).get_mat() << std::endl;
       ham -= h * Sigma(index, N, Axis::Z).get_mat();
     }
   }
+  auto [es, ev] = xt::linalg::eigh(ham);
+  energy_spectr = es;
+  evectors = xt::real(ev);
 };
 
-void Hamilitonian::print() { std::cout << ham << std::endl; }
+void Hamilitonian::print() const { std::cout << ham << std::endl; }
 
-// void Hamilitonian::set(xt::xarray<std::complex<double>> arg)
-// {
-//   if (ham.shape() != arg.shape())
-//   oooikk
-//   throw std::invalid_argument("Shapes aren't the same\n");
-//   ham = arg;
-// }
+ardouble Hamilitonian::espectra() const { return energy_spectr; }
 
-xt::xarray<double> Hamilitonian::eigenvalues() {
-  return xt::real(xt::linalg::eigvals(ham));
-}
+ardouble Hamilitonian::eigenvectors() const { return evectors; }
 
 // Simga realization
 

@@ -10,7 +10,7 @@ using namespace std::literals::complex_literals;
 
 int main() {
   Hamilitonian H(2, 1.0, 2.0, 0.5, 2, 3);
-  H.print();
+  std::cout << H.espectra() << std::endl;
   return 0;
 }
 
