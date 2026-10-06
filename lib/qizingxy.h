@@ -31,6 +31,7 @@ private:
   // H = -J * ((1 + gamma) * sigma^x_i+1 * sigma^x_i + (1-gamma) * sigma^y_i+1 *
   // sigma^y_i) - h sigma^z_i
   long unsigned int N;
+  long unsigned int STATES;
   int height;
   int length;
   double h;
@@ -45,7 +46,9 @@ public:
                int llength);
   void change_grid(int new_length, int new_height);
   void change_amount(int newN);
-
+  void magn_field(double nh, double nJ, double ngamma);
+  void CalcHam();
+  ardouble rho(double T);
   void print() const;
   ardouble espectra() const;
   ardouble eigenvectors() const;
